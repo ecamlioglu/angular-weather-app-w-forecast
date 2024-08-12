@@ -26,7 +26,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.19.1'  # Use a compatible Node.js version
+          node-version: '18.19.1'
           cache: 'yarn'
 
       - name: MK ENV
@@ -52,3 +52,4 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_MOSS_0DD0C4303 }}
           app_location: "/"
           output_location: "dist/angular-weather-app"
+          deployment_action: 'upload'
