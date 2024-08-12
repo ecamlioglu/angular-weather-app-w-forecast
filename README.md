@@ -1,27 +1,69 @@
-# AngularWeatherApp
+# Angular Weather App with Forecast
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+This project is an Angular-based weather dashboard that provides current weather conditions, a five-day forecast, and an hourly forecast for any given city or zip code. The application is designed with a user-friendly interface, offering features like unit conversion between Celsius and Fahrenheit and error handling for invalid inputs.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Current Weather Conditions: Displays temperature, humidity, wind speed, weather description, and an icon representing the current weather.
+-	Five-Day Forecast: Provides daily high and low temperatures, along with weather icons for the next five days.
+-	Hourly Forecast: Offers an hourly breakdown of the weather for the next 24 hours.
+-	Temperature Unit Toggle: Users can switch between Celsius and Fahrenheit.
+-	Interactive UI: The dashboard is designed to be visually appealing, responsive, and easy to navigate, with clear and organized weather information.
+-	Error Handling: Handles invalid city names or zip codes gracefully, displaying appropriate error messages.
+-	Loading States: Displays loading indicators while fetching data.
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-	Angular 18: The latest Angular version is used to build a robust, modular, and maintainable application.
+-	PrimeNG Components: Leveraged for building a modern and responsive UI.
+-	OpenWeatherMap API: Utilized to fetch weather data.
 
-## Build
+## Installation
+To run this project locally, follow these steps:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1.	Clone the repository:
 
-## Running unit tests
+```bash
+git clone https://github.com/ecamlioglu/angular-weather-app-w-forecast.git
+cd angular-weather-app-w-forecast
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2.	Install Dependencies:
 
-## Running end-to-end tests
+```bash
+yarn // I'm using yarn on this project.
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3.	Set up environment variables
 
-## Further help
+Create your environment ts under the src/environment/*. And add your API key.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+And enjoy to your weather app.
+
+## Deployment
+
+The application is configured to be deployed to Azure Static Web Apps. A GitHub Actions workflow automates the build and deployment process.
+
+### To deploy:
+
+1.	Set up your environment variables in the Azure portal, including the OpenWeatherMap API key.
+2.	Push your code to GitHub, and the GitHub Actions workflow will handle the rest.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1.	Fork the repository.
+2.	Create a new branch (git checkout -b feature/YourFeature).
+3.	Commit your changes (git commit -m 'Add YourFeature').
+4.	Push to the branch (git push origin feature/YourFeature).
+5.	Open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+-	OpenWeatherMap API for providing weather data.
+-	PrimeNG for UI components.
