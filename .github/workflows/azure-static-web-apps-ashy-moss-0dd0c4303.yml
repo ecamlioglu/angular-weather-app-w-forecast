@@ -14,30 +14,26 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    
     strategy:
       matrix:
         node-version: [20.x]
-    env: # Env variables needed during build
-      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:  ${{secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}}
+    
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
       - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20' 
-          cache: 'yarn'
-      - name: MK ENV
-        run: node environment-generate.js
-        env: # Env variables needed during build
-          ENV_FILE_CONTENT:  ${{secrets.ENV_FILE_CONTENT}}
-
-      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20.x' 
+
+      - name: MK ENV
+        run: node environment-generate.js
+        env:
+          ENV_FILE_CONTENT:  ${{secrets.ENV_FILE_CONTENT}}
+
       - name: Install dependencies
         run: yarn install
       - name: Build Angular app
@@ -51,17 +47,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"
-          api_location: "" 
           output_location: "angular.json#$.projects[*].architect.build.options.outputPath"
-
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_MOSS_0DD0C4303 }}
-          action: "close"
