@@ -1,6 +1,9 @@
 {
   "name": "angular-weather-app",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=19"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
