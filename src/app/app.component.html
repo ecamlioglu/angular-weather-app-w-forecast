@@ -1,0 +1,6 @@
+<div class="p-grid p-align-center p-justify-center">
+  <div class="p-col-12 p-md-8">
+    <app-search [location]="location" (locationChange)="updateLocation($event)"></app-search>
+    <app-weather [location]="location"></app-weather>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div [ngStyle]="{'background-image': backgroundImageUrl}" class="weather-container">
+  <div class="temp-toggle">
+    <p-button label="{{ units === 'metric' ? '°F' : '°C' }}" (onClick)="toggleUnits()" [text]="true" [raised]="true"
+      severity="info" />
+  </div>
+  <div *ngIf="currentWeather" class="weather-card">
+    <div class="weather-header">
+      <div class="weather-header-location">
+        <h3 class="m-2 my-4">{{ location.split("/")[0] }}</h3>
+        <h2 class="m-1">{{ location.split("/")[1] }}</h2>
+      </div>
+      <img [src]="'http://openweathermap.org/img/wn/' + currentWeather.iconText + '@2x.png'" alt="Weather Icon">
+    </div>
+    <div class="weather-details">
+      <p>{{ currentWeather.description | titlecase }}</p>
+      <p>Temperature: {{ currentWeather.temperature }}° {{ units === 'metric' ? 'C' : 'F' }}</p>
+      <p>Humidity: {{ currentWeather.humidity }}%</p>
+      <p>Wind Speed: {{ currentWeather.windSpeed }} {{ units === 'metric' ? 'm/s' : 'mph' }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="currentWeather?.daily?.length" class="daily-forecast">
+    <div *ngFor="let day of currentWeather?.daily | slice: 1: 8" class="day-card">
+      <h4 class="day-date">{{(day.dt * 1000) | date: 'EEE, MMM d'}}</h4>
+      <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}@2x.png" class="day-icon">
+      <div class="temperature">
+        <span class="temp-max">{{day.temp.max | number: '1.0-0'}}&#176;</span>
+        <span class="temp-min">{{day.temp.min | number: '1.0-0'}}&#176;</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hourly-container">
+  <div *ngIf="currentWeather?.hourly?.length" class="hourly-forecast">
+    <div *ngFor="let hour of currentWeather?.hourly | slice: 0: 24" class="hour-card">
+      <h4 class="hour-date">{{(hour.dt * 1000) | date : 'HH:00'}}</h4>
+      <img src="http://openweathermap.org/img/wn/{{hour.weather[0].icon}}@2x.png" class="hour-icon">
+      <div class="temperature">
+        <span class="hour-temp">{{hour.temp | number: '1.0-0'}}&#176;</span>
+      </div>
+    </div>
+  </div>
+</div>

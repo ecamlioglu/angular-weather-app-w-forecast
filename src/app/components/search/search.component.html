@@ -1,0 +1,5 @@
+<div class="search-card">
+    <label for="locationInput">Location</label>
+    <input  type="text" pInputText #locationInput [(ngModel)]="location" placeholder="City Name or Zip Code" styleClass="w-full"/>
+    <p-button styleClass="w-full" label="Search" icon="pi pi-search" (onClick)="search()"></p-button>
+</div>
