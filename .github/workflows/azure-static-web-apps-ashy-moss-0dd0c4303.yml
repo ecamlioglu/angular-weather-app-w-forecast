@@ -20,14 +20,14 @@ jobs:
         node-version: [20.x]
     
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
-          lfs: false
+      - name: Checkout code
+        uses: actions/checkout@v3
+  
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '20.x' 
+          node-version: '18.19.1'  # Use a compatible Node.js version
+          cache: 'yarn'
 
       - name: MK ENV
         run: node environment-generate.js
